@@ -1,3 +1,5 @@
+import utils.*
+
 // https://adventofcode.com/2015/day/10
 fun main() {
     val today = "Day10"
@@ -8,7 +10,7 @@ fun main() {
     fun part1(input: List<String>, times: Int): Int {
         var s = input.single()
         repeat(times) {
-            s.toRepeatSegments().let { segList ->
+            s.groupContinuousChars().let { segList ->
                 s = buildString {
                     segList.forEach { seg -> append(seg.let { "${it.size}${it.first()}" }) }
                 }

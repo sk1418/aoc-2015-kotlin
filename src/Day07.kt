@@ -1,4 +1,8 @@
 import GateOp.*
+import utils.Part1
+import utils.Part2
+import utils.readInput
+import utils.solve
 
 // https://adventofcode.com/2015/day/7
 fun main() {

@@ -1,3 +1,5 @@
+import utils.*
+
 // https://adventofcode.com/2015/day/14
 fun main() {
     val today = "Day14"
