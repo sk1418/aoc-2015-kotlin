@@ -47,7 +47,7 @@ private class MatrixDay06(override val points: MutableNotNullMap<Pair<Int, Int>,
         lines.forEach { line ->
             val (from, to) = posRe.findAll(line).map { it.value.split(",").let { it[0].toInt() to it[1].toInt() } }.toList()
             val op = if ("on" in line) {
-                { i: Int -> i + 1 }
+                { i: Int -> i + 1  }
             } else if ("off" in line) {
                 { i: Int -> if (i - 1 < 0) 0 else i - 1 }
             } else {
