@@ -5,17 +5,23 @@ fun main() {
     val input = readInput(today)
     val testInput = readTestInput(today)
 
-    fun part1(input: List<String>): Long {
-        return 0
+    fun part1(input: List<String>, times: Int): Int {
+        var s = input.single()
+        repeat(times) {
+            s.toRepeatSegments().let { segList ->
+                s = buildString {
+                    segList.forEach { seg -> append(seg.let { "${it.size}${it.first()}" }) }
+                }
+            }
+        }
+        return s.length
     }
 
-    fun part2(input: List<String>): Long {
-        return 0
-    }
+    fun part2(input: List<String>) = part1(input, 50)
 
-    chkTestInput(Part1, testInput, 0L) { part1(it) }
-    solve(Part1, input) { part1(it) }
+    chkTestInput(Part1, testInput, 6) { part1(it, 5) }
+    solve(Part1, input) { part1(it, 40) }
 
-    chkTestInput(Part2, testInput, 0L) { part2(it) }
+//    chkTestInput(Part2, testInput, 0L) { part2(it) }
     solve(Part2, input) { part2(it) }
 }
