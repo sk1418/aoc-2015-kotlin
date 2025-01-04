@@ -21,14 +21,14 @@ fun main() {
 
     fun part1(input: List<String>): Int {
         val theMap = parseInput(input)
-        return permutations(theMap.keys.flatten().distinct()).minOf{ route ->
+        return theMap.keys.flatten().distinct().permutations().minOf{ route ->
             route.windowed(2).sumOf { pair -> theMap[pair.toSet()] }
         }
     }
 
     fun part2(input: List<String>): Int {
         val theMap = parseInput(input)
-        return permutations(theMap.keys.flatten().distinct()).maxOf{ route ->
+        return theMap.keys.flatten().distinct().permutations().maxOf{ route ->
             route.windowed(2).sumOf { pair -> theMap[pair.toSet()] }
         }
     }

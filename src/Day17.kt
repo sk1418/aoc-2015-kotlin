@@ -7,17 +7,20 @@ fun main() {
     val input = readInput(today)
     val testInput = readTestInput(today)
 
-    fun part1(input: List<String>): Long {
-        return 0
+    fun part1(input: List<String>, totalLiter: Int): Int {
+        val boxes = input.map { it.toInt() }
+        return (1..boxes.size).flatMap { boxes.combinations(it) }.filter { it.sum() == totalLiter }.size
     }
 
-    fun part2(input: List<String>): Long {
-        return 0
+    fun part2(input: List<String>, totalLiter: Int): Int {
+        val boxes = input.map { it.toInt() }
+        return (1..boxes.size).flatMap { boxes.combinations(it) }.filter { it.sum() == totalLiter }
+            .groupBy { it.size }.minByOrNull { it.key }!!.value.size
     }
 
-    chkTestInput(Part1, testInput, 0L) { part1(it) }
-    solve(Part1, input) { part1(it) }
+    chkTestInput(Part1, testInput, 4) { part1(it, 25) }
+    solve(Part1, input) { part1(it, 150) }
 
-    chkTestInput(Part2, testInput, 0L) { part2(it) }
-    solve(Part2, input) { part2(it) }
+    chkTestInput(Part2, testInput, 3) { part2(it, 25) }
+    solve(Part2, input) { part2(it, 150) }
 }

@@ -25,17 +25,17 @@ fun main() {
     fun part1(input: List<String>): Int {
         val dict = parseInput(input)
         val guys = dict.keys.flatten().distinct()
-        return permutations(guys).maxOf { pList ->
+        return guys.permutations().maxOf { pList ->
             pList.windowed(2).sumOf { two -> dict[two.toSet()] } + dict[setOf(pList.first(), pList.last())]
         }
     }
 
     fun part2(input: List<String>): Int {
         val dict = parseInput(input)
-        val allGuys = dict.keys.flatten().distinct().onEach { dict[setOf("me", it)]=0 } + "me"
-        return permutations(allGuys).map { pList ->
+        val allGuys = dict.keys.flatten().distinct().onEach { dict[setOf("me", it)] = 0 } + "me"
+        return allGuys.permutations().maxOf { pList ->
             pList.windowed(2).sumOf { two -> dict[two.toSet()] } + dict[setOf(pList.first(), pList.last())]
-        }.max()
+        }
     }
 
     chkTestInput(Part1, testInput, 330) { part1(it) }
