@@ -1,23 +1,22 @@
-import utils.*
+import utils.Part1
+import utils.readInput
+import utils.solve
 
 // https://adventofcode.com/2015/day/25
 fun main() {
     val today = "Day25"
 
     val input = readInput(today)
-    val testInput = readTestInput(today)
+    fun findNumberIndex(row: Int, col: Int) =
+        (1..<row).fold(initial = 1) { acc, n -> acc + n }.let { idx ->
+            (1..<col).fold(initial = idx) { acc, n -> acc + n + row }
+        }
 
-    fun part1(input: List<String>): Long {
-        return 0
+    // input row:2947 col: 3029
+    fun part1(): Long {
+        val idx = findNumberIndex(2947, 3029)
+        return (1..<idx).fold(initial = 20151125) { acc, _ -> 252533 * acc % 33554393 }
     }
+    solve(Part1, input) { part1() }
 
-    fun part2(input: List<String>): Long {
-        return 0
-    }
-
-    chkTestInput(Part1, testInput, 0L) { part1(it) }
-    solve(Part1, input) { part1(it) }
-
-    chkTestInput(Part2, testInput, 0L) { part2(it) }
-    solve(Part2, input) { part2(it) }
 }
